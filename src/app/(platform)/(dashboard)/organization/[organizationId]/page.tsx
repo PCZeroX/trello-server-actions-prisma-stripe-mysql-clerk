@@ -1,17 +1,26 @@
-import { auth } from "@clerk/nextjs";
+import { Suspense } from "react";
+
+import { checkSubscription } from "@/lib/subscription";
 
 import { Separator } from "@/components/ui/separator";
 
-const OrganizationIdPage = () => {
-  const { orgId } = auth();
+import { Info } from "@/app/(platform)/(dashboard)/organization/[organizationId]/_components/info";
+import { BoardList } from "@/app/(platform)/(dashboard)/organization/[organizationId]/_components/board-list";
+
+const OrganizationIdPage = async () => {
+  const isPro = await checkSubscription();
 
   return (
     <div className="w-full mb-20">
-      <h2>OrganizationIdPage</h2>
+      <Info isPro={isPro} />
 
       <Separator className="my-4" />
 
-      <p>Organization: {orgId}</p>
+      <div className="px-2 md:px-4">
+        <Suspense fallback={<BoardList.Skeleton />}>
+          <BoardList />
+        </Suspense>
+      </div>
     </div>
   );
 };

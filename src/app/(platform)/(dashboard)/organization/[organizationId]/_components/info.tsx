@@ -25,6 +25,8 @@ export const Info = ({ isPro }: InfoProps) => {
           src={organization?.imageUrl!}
           alt="Organization"
           className="rounded-md object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
         />
       </div>
       <div className="space-y-1">
