@@ -45,6 +45,7 @@ export const ListItem = ({ data, index }: ListItemProps) => {
             className="w-full rounded-md bg-[#f1f2f4] shadow-md pb-2"
           >
             <ListHeader onAddCard={enableEditing} data={data} />
+
             <Droppable droppableId={data.id} type="card">
               {(provided) => (
                 <ol
@@ -62,6 +63,7 @@ export const ListItem = ({ data, index }: ListItemProps) => {
                 </ol>
               )}
             </Droppable>
+
             <CardForm
               listId={data.id}
               ref={textareaRef}
